@@ -2,14 +2,12 @@ package com.louay.projects.chains;
 
 
 import java.sql.ResultSet;
-import java.util.List;
+import java.util.Collection;
 
 public interface BuildCar {
 
     Cars buildCar(ResultSet resultSet);
 
-    Cars auxiliaryBuildSingleCar(ResultSet resultSet);
-
-    List<Cars> buildCarsList(ResultSet resultSet, List<Cars> carsList);
+    Collection<Cars> buildCarsList(ResultSet resultSet, Collection <Cars> carsContainer);
 
 }

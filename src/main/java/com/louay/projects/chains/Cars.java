@@ -14,10 +14,13 @@ public class Cars {
     private String version;
     private Integer model;
     private String owner;
+    private java.sql.Date purchaseDate;
     private String color;
+    private java.sql.Date colorDate;
     private Integer numberOfSeats;
     private java.sql.Date licenseExpiry;
     private Double trafficViolationTotalAmount;
+    private java.sql.Date violationsDate;
 
     public Long getIdCar() {
         return idCar;
@@ -59,12 +62,28 @@ public class Cars {
         this.owner = owner;
     }
 
+    public Date getPurchaseDate() {
+        return purchaseDate;
+    }
+
+    public void setPurchaseDate(Date purchaseDate) {
+        this.purchaseDate = purchaseDate;
+    }
+
     public String getColor() {
         return color;
     }
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public Date getColorDate() {
+        return colorDate;
+    }
+
+    public void setColorDate(Date colorDate) {
+        this.colorDate = colorDate;
     }
 
     public Integer getNumberOfSeats() {
@@ -91,18 +110,29 @@ public class Cars {
         this.trafficViolationTotalAmount = trafficViolationTotalAmount;
     }
 
+    public Date getViolationsDate() {
+        return violationsDate;
+    }
+
+    public void setViolationsDate(Date violationsDate) {
+        this.violationsDate = violationsDate;
+    }
+
     @Override
     public String toString() {
-        return "Cars{ " +
-                "idCar=' " + idCar + '\'' +
-                ", type=' " + type + '\'' +
-                ", version=' " + version + '\'' +
-                ", model=' " + model + '\'' +
-                ", owner=' " + owner + '\'' +
-                ", color=' " + color + '\'' +
-                ", numberOfSeats= " + numberOfSeats +
-                ", licenseExpiry= " + licenseExpiry +
-                ", trafficViolationTotalAmount= " + trafficViolationTotalAmount + "$ " +
+        return "Cars{" +
+                "idCar=" + idCar +
+                ", type='" + type + '\'' +
+                ", version='" + version + '\'' +
+                ", model=" + model +
+                ", owner='" + owner + '\'' +
+                ", purchaseDate=" + purchaseDate +
+                ", color='" + color + '\'' +
+                ", colorDate=" + colorDate +
+                ", numberOfSeats=" + numberOfSeats +
+                ", licenseExpiry=" + licenseExpiry +
+                ", trafficViolationTotalAmount=" + trafficViolationTotalAmount + " $" +
+                ", violationsDate=" + violationsDate +
                 '}';
     }
 }

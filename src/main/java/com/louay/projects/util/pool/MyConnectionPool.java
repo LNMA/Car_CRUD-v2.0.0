@@ -4,11 +4,12 @@ package com.louay.projects.util.pool;
 import com.louay.projects.util.queue.MyList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 
 import java.sql.*;
 
-
+@Component("pool")
 public class MyConnectionPool {
 
     @Autowired
@@ -29,7 +30,7 @@ public class MyConnectionPool {
 
     public ConnectionWrapper getConnection() throws SQLException {
         if (this.connection.isEmpty()) {
-            return new ConnectionWrapper(DriverManager.getConnection(this.db.getUrl(), this.db.getUsername(), this.db.getPassword()));
+            return new ConnectionWrapper(getWrapperConnection(this.db.getUrl(), this.db.getUsername(), this.db.getPassword()));
         } else {
             ConnectionWrapper connectionWrapper = this.connection.dequeue();
             if (connectionWrapper.isAlive()) {
@@ -39,6 +40,17 @@ public class MyConnectionPool {
                 return getConnection();
             }
         }
+    }
+
+    public Connection getWrapperConnection(String url, String username, String password) {
+        Connection connection = null;
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+            connection = DriverManager.getConnection(url, username, password);
+        } catch (ClassNotFoundException | SQLException | IllegalAccessException | InstantiationException e) {
+            System.out.println(e.getMessage());
+        }
+        return connection;
     }
 
     public void release(ConnectionWrapper connectionWrapper){

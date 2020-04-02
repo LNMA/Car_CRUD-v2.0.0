@@ -4,6 +4,12 @@ import com.louay.projects.chains.Cars;
 
 public interface UpdateCarDAO {
 
-    int updateCar(Cars cars);
+    int updateCarByID(Cars cars);
+
+    int updateColorByIDAndDate(Cars cars);
+
+    int updateOwnerNameByIDAndDate(Cars cars);
+
+    int updateTrafficViolationsByIDAndDate(Cars cars);
 
 }
